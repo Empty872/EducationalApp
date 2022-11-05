@@ -6,20 +6,6 @@ import {useNavigation} from "@react-navigation/native";
 import {BottomPanel, TopPanel} from "../Components";
 
 export default function HomeScreen() {
-    const navigation = useNavigation()
-    // if (App.user.email !== null) {
-    //     return (
-    //         <View style={styles.container}>
-    //             <TopPanel/>
-    //             <TouchableOpacity onPress={() => {
-    //                 navigation.navigate('ChangePassword');
-    //             }} style={[styles.button, {backgroundColor: '#6792F090'}]}>
-    //                 <Text style={{fontSize: 17, fontWeight: '400', color: 'white'}}>Change Password</Text>
-    //             </TouchableOpacity>
-    //             <BottomPanel/>
-    //         </View>
-    //     )
-    // } else {
     return (
         <View style={styles.container}>
             <TopPanel/>
@@ -27,7 +13,6 @@ export default function HomeScreen() {
             <BottomPanel/>
         </View>
     )
-    //}
 }
 const styles = StyleSheet.create({
     container: {
