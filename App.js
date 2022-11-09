@@ -9,17 +9,12 @@ import EmailLoginScreen from "./screens/EmailLoginScreen"
 import ChoosingMethodScreen from "./screens/ChoosingMethodScreen";
 import ResetPasswordScreen from "./screens/ResetPasswordScreen";
 import ChangePasswordScreen from "./screens/ChangePasswordScreen";
-import {FullNavigationPanel, TopPanel, BottomPanel} from "./Components"
 
 const Stack = createNativeStackNavigator();
 
 export default function App() {
     const user = null
     return (
-        // <View style={styles.container}>
-        //     <TopPanel/>
-        //     <BottomPanel/>
-        // </View>
         <NavigationContainer>
             <Stack.Navigator initialRouteName="ChoosingMethod">
                 <Stack.Screen name="ChangePassword" component={ChangePasswordScreen}/>

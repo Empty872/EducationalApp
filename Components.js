@@ -4,18 +4,18 @@ import {useNavigation} from "@react-navigation/native";
 
 export function TopPanel() {
     const navigation = useNavigation();
-    return (<View style={[styles.NavContainer, {top: 0}]}>
-        <View style={[styles.NavBar, {borderBottomWidth: 2, borderBottomColor: '#fff'}]}>
+    return (<View style={[styles.NavContainer, {top: 0, borderBottomWidth: 1}]}>
+        <View style={styles.NavBar}>
             <Image source={require('./images/icons/others.png')}/>
-            <View style={styles.Width}/>
+            <View/>
             <Image source={require('./images/icons/account.png')}/>
         </View>
     </View>)
 }
 
 export function BottomPanel() {
-    return (<View style={[styles.NavContainer, {bottom: 0}]}>
-        <View style={[styles.NavBar, {borderTopWidth: 2, borderTopColor: '#fff'}]}>
+    return (<View style={[styles.NavContainer, {bottom: 0, borderTopWidth: 1}]}>
+        <View style={styles.NavBar}>
             <Image source={require('./images/icons/home.png')}/>
             <Image source={require('./images/icons/classes.png')}/>
             <Image source={require('./images/icons/achievements.png')}/>
@@ -23,29 +23,6 @@ export function BottomPanel() {
             <Image source={require('./images/icons/notifications.png')}/>
         </View>
     </View>)
-}
-
-export function FullNavigationPanel() {
-    return (
-        <View style={styles.container}>
-            <View style={[styles.NavContainer, {top: 0}]}>
-                <View style={[styles.NavBar, {borderBottomWidth: 2, borderBottomColor: '#fff'}]}>
-                    <Image source={require('./images/icons/others.png')}/>
-                    <View style={styles.Width}/>
-                    <Image source={require('./images/icons/account.png')}/>
-                </View>
-            </View>
-            <View style={[styles.NavContainer, {bottom: StatusBar.currentHeight}]}>
-                <View style={[styles.NavBar, {borderTopWidth: 2, borderTopColor: '#fff'}]}>
-                    <Image source={require('./images/icons/home.png')}/>
-                    <Image source={require('./images/icons/classes.png')}/>
-                    <Image source={require('./images/icons/achievements.png')}/>
-                    <Image source={require('./images/icons/courses.png')}/>
-                    <Image source={require('./images/icons/notifications.png')}/>
-                </View>
-            </View>
-        </View>
-    )
 }
 
 const styles = StyleSheet.create({
@@ -57,20 +34,16 @@ const styles = StyleSheet.create({
     },
     NavContainer: {
         position: 'absolute',
-        alignItems: 'center'
+        alignItems: 'center',
+        width: "100%",
+        borderColor: 'rgba(0, 0, 0, 0.05)'
     },
     NavBar: {
         display: "flex",
         flexDirection: 'row',
-        width: '100%',
-        justifyContent: 'space-evenly',
+        width: '90%',
+        justifyContent: 'space-between',
         alignItems: "center",
-        height: 70,
-    },
-    Width: {
-        width: '50%'
-    },
-    Bottom: {
-        bottom: StatusBar.currentHeight
+        height: 50
     }
 })

@@ -9,7 +9,7 @@ export default function HomeScreen() {
     return (
         <View style={styles.container}>
             <TopPanel/>
-            <Text style={{color: '#fff'}}>Home Screen</Text>
+            <Text style={{color: '#000'}}>Home Screen</Text>
             <BottomPanel/>
         </View>
     )
@@ -17,7 +17,7 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#000',
+        backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
     },
