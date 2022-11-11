@@ -2,7 +2,7 @@ import React from "react";
 import {useNavigation} from "@react-navigation/native";
 import {initializeApp} from "firebase/app";
 import {firebaseConfig} from "../firebase-config";
-import {createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, updatePassword, pas} from "firebase/auth";
+import {createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, updatePassword} from "firebase/auth";
 import {Alert, StyleSheet, Text, TextInput, TouchableOpacity, View} from "react-native";
 import App from "../App";
 
