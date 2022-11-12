@@ -2,20 +2,6 @@ import {View, StyleSheet, Pressable, Image, StatusBar, Alert, Text} from "react-
 import Modal from "react-native-modal";
 import {useState} from "react";
 
-let LeftPanelIsActive = false
-export const TopPanel = () => {
-    return (<View style={[styles.NavContainer, {top: 0, borderBottomWidth: 1}]}>
-        <View style={styles.NavBar}>
-            <Pressable onPress={() => {
-                LeftPanelIsActive = true;
-                this.update
-            }}>
-                <Image source={require('./images/icons/others.png')}/>
-            </Pressable>
-            <Image source={require('./images/icons/account.png')}/>
-        </View>
-    </View>)
-}
 
 export const BottomPanel = () => {
     return (<View style={[styles.NavContainer, {bottom: 0, borderTopWidth: 1}]}>
@@ -29,33 +15,6 @@ export const BottomPanel = () => {
     </View>)
 }
 
-
-export const LeftPanel = () => {
-    let [modalVisible, setModalVisible] = useState(false);
-    return (<Modal
-        animationIn="slideInLeft"
-        animationOut="slideOutLeft"
-        transparent={true}
-        isVisible={modalVisible}
-        onRequestClose={() => {
-            Alert.alert("Modal has been closed.");
-            setModalVisible(!modalVisible);
-        }}
-        style={{margin: 0}}
-    >
-        <View>
-            <View style={styles.modalView}>
-                <Text style={styles.modalText}>Hello World!</Text>
-                <Pressable
-                    style={[styles.button, styles.buttonClose]}
-                    onPress={() => setModalVisible(!modalVisible)}
-                >
-                    <Text style={styles.textStyle}>Hide Modal</Text>
-                </Pressable>
-            </View>
-        </View>
-    </Modal>)
-}
 
 export const TopAndLeftPanel = () => {
     let [modalVisible, setModalVisible] = useState(false);
@@ -71,6 +30,10 @@ export const TopAndLeftPanel = () => {
             animationOut="slideOutLeft"
             isVisible={modalVisible}
             backdropOpacity={0.4}
+            onRequestClose={() => {
+                setModalVisible(false);
+            }}
+            backdropTransitionOutTiming={0}
             style={{margin: 0}}
         >
             <View style={styles.modalView}>
@@ -130,7 +93,7 @@ const styles = StyleSheet.create({
         fontWeight: "600",
         fontSize: 16,
         lineHeight: 22,
-        maxWidth: "70%"
+        maxWidth: "70%",
     },
     verticalList: {
         flexDirection: "column"
