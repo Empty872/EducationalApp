@@ -1,24 +1,75 @@
-import {View, StyleSheet, Pressable, Image, StatusBar, Alert, Text} from "react-native";
+import {View, StyleSheet, Pressable, Image, Text, BackHandler} from "react-native";
 import Modal from "react-native-modal";
 import {useState} from "react";
+import {useNavigation} from "@react-navigation/native";
 
 
-export const BottomPanel = () => {
+
+export const BottomPanel = (screenName) => {
+    const navigation = useNavigation()
     return (<View style={[styles.NavContainer, {bottom: 0, borderTopWidth: 1}]}>
         <View style={styles.NavBar}>
-            <Image source={require('./images/icons/home.png')}/>
-            <Image source={require('./images/icons/classes.png')}/>
-            <Image source={require('./images/icons/achievements.png')}/>
-            <Image source={require('./images/icons/courses.png')}/>
-            <Image source={require('./images/icons/notifications.png')}/>
+            <Pressable onPress={() => {
+                if (screenName !== "HomeScreen") {
+                    navigation.goBack()
+                    navigation.navigate('Home')
+                }
+            }}>
+                <Image source={require('./images/icons/home.png')}
+                       style={{opacity: (screenName === "HomeScreen" ? 1 : 0.5)}}/>
+            </Pressable>
+            <Pressable onPress={() => {
+                if (screenName !== "ClassesScreen") {
+                    navigation.goBack();
+                    navigation.navigate('Classes')
+                }
+            }}>
+                <Image source={require('./images/icons/classes.png')}
+                       style={{opacity: (screenName === "ClassesScreen" ? 1 : 0.5)}}/>
+            </Pressable>
+            <Pressable onPress={() => {
+                if (screenName !== "AchievementsScreen") {
+                    navigation.goBack();
+                    navigation.navigate('Achievements')
+                }
+            }}>
+                <Image source={require('./images/icons/achievements.png')}/>
+            </Pressable>
+            <Pressable onPress={() => {
+                if (screenName !== "CoursesScreen") {
+                    navigation.goBack();
+                    navigation.navigate('Courses')
+                }
+            }}>
+                <Image source={require('./images/icons/courses.png')}/>
+            </Pressable>
+            <Pressable onPress={() => {
+                if (screenName !== "NotificationsScreen") {
+                    navigation.goBack();
+                    navigation.navigate('Notifications')
+                }
+            }}>
+                <Image source={require('./images/icons/notifications.png')}/>
+            </Pressable>
         </View>
     </View>)
 }
 
+export const TopPanel = () => {
+    const navigation = useNavigation()
+    return (<View style={[styles.NavContainer, {borderBottomWidth: 1, top: 0}]}>
+        <View style={styles.NavBar}>
+            <Pressable onPress={() => navigation.navigate('Home')}>
+                <Image source={require('./images/icons/backArrow.png')}/>
+            </Pressable>
+            <Image source={require('./images/icons/account.png')}/>
+        </View>
+    </View>)
+}
 
 export const TopAndLeftPanel = () => {
     let [modalVisible, setModalVisible] = useState(false);
-    return (<View style={[styles.NavContainer, {borderBottomWidth: 1}]}>
+    return (<View style={[styles.NavContainer, {borderBottomWidth: 1, top: 0}]}>
         <View style={styles.NavBar}>
             <Pressable onPress={() => setModalVisible(true)}>
                 <Image source={require('./images/icons/others.png')} style={{opacity: 0.5}}/>
@@ -61,10 +112,10 @@ const leftPanelContent = () => {
                 <Image source={require('./images/icons/phone.png')}/>
                 <Text style={styles.modalText}>Поставьте нам оценку</Text>
             </View>
-            <View style={styles.modalIconAndText}>
+            <Pressable onPress={BackHandler.exitApp} style={styles.modalIconAndText}>
                 <Image source={require('./images/icons/exit.png')}/>
                 <Text style={styles.modalText}>Выйти</Text>
-            </View>
+            </Pressable>
         </View>
     )
 }
