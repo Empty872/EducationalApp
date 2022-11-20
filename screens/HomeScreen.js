@@ -11,6 +11,7 @@ const subjectBlock = (imageUrl, name, topicsList) => {
             <Text style={styles.subjectBlockName}>{name}</Text></ImageBackground>
     </Pressable>)
 }
+
 const subjectTopicBlock = (backgroundImageUrl, name, description, imageUrl) => {
     return (<View style={{marginTop: 16, left: 26, width: 309, height: 93}}>
         <ImageBackground style={{height: "100%", flexDirection: 'row', justifyContent: 'space-between'}}
@@ -50,7 +51,7 @@ const dashedLine = (className) => {
 
 export default function HomeScreen() {
     const MathTopicsList = [
-        subjectTopicBlock(require('../images/blueRectangle.png'), "Урок 1", "Что такое дроби?", require('../images/subjectImages/comprasion.png')),
+        subjectTopicBlock(require('../images/greenRectangle.png'), "Урок 1", "Что такое дроби?", require('../images/subjectImages/questions.png')),
         subjectTopicBlock(require('../images/blueRectangle.png'), "Урок 2", "Сравнение дробей", require('../images/subjectImages/comprasion.png')),
         subjectTopicBlock(require('../images/blueRectangle.png'), "Урок 3", "Сложение и вычитание дробей", require('../images/subjectImages/sum.png')),
         subjectTopicBlock(require('../images/blueRectangle.png'), "Урок 4", "Умножение и деление дробей", require('../images/subjectImages/separate.png'))]
@@ -82,7 +83,7 @@ const styles = StyleSheet.create({
         fontWeight: "600",
         fontSize: 20,
         lineHeight: 27,
-        marginBottom: 4
+        marginBottom: 10
     },
     blockDescription: {
         color: "#fff",
