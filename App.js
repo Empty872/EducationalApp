@@ -10,6 +10,8 @@ import AchievementsScreen from "./screens/AchievementsScreen";
 import NotificationsScreen from "./screens/NotificationsScreen";
 import CoursesScreen from "./screens/CoursesScreen";
 import SubjectScreen from "./screens/SubjectScreen";
+import LessonScreen from "./screens/LessonScreen";
+import TopicScreen from "./screens/TopicScreen";
 
 export const Stack = createNativeStackNavigator();
 
@@ -37,6 +39,11 @@ export default function App() {
                           options={{headerShown: false, statusBarStyle: "dark"}}/>
             <Stack.Screen name="Subject" component={SubjectScreen}
                           options={{headerShown: false, statusBarStyle: "dark"}}/>
+            <Stack.Screen name='Lesson' component={LessonScreen}
+                          options={{headerShown: false, statusBarStyle: "dark"}}/>
+            <Stack.Screen name='Topic' component={TopicScreen}
+                          options={{headerShown: false, statusBarStyle: "dark"}}/>
+
         </Stack.Navigator>
     </NavigationContainer>);
 }

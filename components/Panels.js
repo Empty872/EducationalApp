@@ -15,7 +15,7 @@ export const BottomPanel = (screenName) => {
                     navigation.navigate('Home')
                 }
             }}>
-                <Image source={require('./images/icons/home.png')}
+                <Image source={require('../images/icons/home.png')}
                        style={{opacity: (screenName === "HomeScreen" ? 1 : 0.5)}}/>
             </Pressable>
             <Pressable onPress={() => {
@@ -24,7 +24,7 @@ export const BottomPanel = (screenName) => {
                     navigation.navigate('Classes')
                 }
             }}>
-                <Image source={require('./images/icons/classes.png')}
+                <Image source={require('../images/icons/classes.png')}
                        style={{opacity: (screenName === "ClassesScreen" ? 1 : 0.5)}}/>
             </Pressable>
             <Pressable onPress={() => {
@@ -33,7 +33,7 @@ export const BottomPanel = (screenName) => {
                     navigation.navigate('Achievements')
                 }
             }}>
-                <Image source={require('./images/icons/achievements.png')}/>
+                <Image source={require('../images/icons/achievements.png')}/>
             </Pressable>
             <Pressable onPress={() => {
                 if (screenName !== "CoursesScreen") {
@@ -41,7 +41,7 @@ export const BottomPanel = (screenName) => {
                     navigation.navigate('Courses')
                 }
             }}>
-                <Image source={require('./images/icons/courses.png')}/>
+                <Image source={require('../images/icons/courses.png')}/>
             </Pressable>
             <Pressable onPress={() => {
                 if (screenName !== "NotificationsScreen") {
@@ -49,7 +49,7 @@ export const BottomPanel = (screenName) => {
                     navigation.navigate('Notifications')
                 }
             }}>
-                <Image source={require('./images/icons/notifications.png')}/>
+                <Image source={require('../images/icons/notifications.png')}/>
             </Pressable>
         </View>
     </View>)
@@ -59,10 +59,10 @@ export const TopPanel = () => {
     const navigation = useNavigation()
     return (<View style={[styles.NavContainer, {borderBottomWidth: 1, top: 0}]}>
         <View style={styles.NavBar}>
-            <Pressable onPress={() => navigation.navigate('Home')}>
-                <Image source={require('./images/icons/backArrow.png')}/>
+            <Pressable onPress={() => navigation.goBack()}>
+                <Image source={require('../images/icons/backArrow.png')}/>
             </Pressable>
-            <Image source={require('./images/icons/account.png')}/>
+            <Image source={require('../images/icons/account.png')}/>
         </View>
     </View>)
 }
@@ -72,9 +72,9 @@ export const TopAndLeftPanel = () => {
     return (<View style={[styles.NavContainer, {borderBottomWidth: 1, top: 0}]}>
         <View style={styles.NavBar}>
             <Pressable onPress={() => setModalVisible(true)}>
-                <Image source={require('./images/icons/others.png')} style={{opacity: 0.5}}/>
+                <Image source={require('../images/icons/others.png')} style={{opacity: 0.5}}/>
             </Pressable>
-            <Image source={require('./images/icons/account.png')}/>
+            <Image source={require('../images/icons/account.png')}/>
         </View>
         <Modal
             animationIn="slideInLeft"
@@ -90,7 +90,7 @@ export const TopAndLeftPanel = () => {
             <View style={styles.modalView}>
                 <Pressable onPress={() => setModalVisible(false)}>
                     <Image style={{marginTop: 8.5, marginBottom: 41, marginLeft: "8.333333%"}}
-                           source={require('./images/icons/others.png')}/>
+                           source={require('../images/icons/others.png')}/>
                 </Pressable>
                 {leftPanelContent()}
             </View>
@@ -101,19 +101,19 @@ const leftPanelContent = () => {
     return (
         <View style={styles.verticalList}>
             <View style={styles.modalIconAndText}>
-                <Image source={require('./images/icons/settings.png')}/>
+                <Image source={require('../images/icons/settings.png')}/>
                 <Text style={styles.modalText}>Настройки</Text>
             </View>
             <View style={styles.modalIconAndText}>
-                <Image source={require('./images/icons/help.png')}/>
+                <Image source={require('../images/icons/help.png')}/>
                 <Text style={styles.modalText}>Помощь</Text>
             </View>
             <View style={styles.modalIconAndText}>
-                <Image source={require('./images/icons/phone.png')}/>
+                <Image source={require('../images/icons/phone.png')}/>
                 <Text style={styles.modalText}>Поставьте нам оценку</Text>
             </View>
             <Pressable onPress={BackHandler.exitApp} style={styles.modalIconAndText}>
-                <Image source={require('./images/icons/exit.png')}/>
+                <Image source={require('../images/icons/exit.png')}/>
                 <Text style={styles.modalText}>Выйти</Text>
             </Pressable>
         </View>

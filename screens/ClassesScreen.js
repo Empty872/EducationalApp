@@ -1,5 +1,5 @@
 import {StyleSheet, Text, View} from "react-native";
-import {BottomPanel, TopAndLeftPanel} from "../Components";
+import {BottomPanel, TopAndLeftPanel} from "../components/Panels";
 import React from "react";
 
 export default function ClassesScreen() {

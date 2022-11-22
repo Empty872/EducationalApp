@@ -1,13 +1,13 @@
 import {StyleSheet, Text, View} from "react-native";
-import {TopPanel} from "../Components";
+import {TopPanel} from "../components/Panels";
 
 export default function SubjectScreen({route}) {
-    const {name, topicsList} = route.params
+    const {name, lessonsList} = route.params
     return (<View style={styles.container}>
         <TopPanel/>
         <View style={styles.screen}>
             <Text style={styles.header}>{name}</Text>
-            {topicsList}
+            {lessonsList}
         </View>
     </View>)
 }
