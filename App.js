@@ -12,6 +12,7 @@ import CoursesScreen from "./screens/CoursesScreen";
 import SubjectScreen from "./screens/SubjectScreen";
 import LessonScreen from "./screens/LessonScreen";
 import TopicScreen from "./screens/TopicScreen";
+import CreateSubjectScreen from "./screens/CreateSubjectScreen";
 
 export const Stack = createNativeStackNavigator();
 
@@ -42,6 +43,8 @@ export default function App() {
             <Stack.Screen name='Lesson' component={LessonScreen}
                           options={{headerShown: false, statusBarStyle: "dark"}}/>
             <Stack.Screen name='Topic' component={TopicScreen}
+                          options={{headerShown: false, statusBarStyle: "dark"}}/>
+            <Stack.Screen name='CreateSubject' component={CreateSubjectScreen}
                           options={{headerShown: false, statusBarStyle: "dark"}}/>
 
         </Stack.Navigator>

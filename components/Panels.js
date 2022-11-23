@@ -121,7 +121,6 @@ const leftPanelContent = () => {
 }
 const styles = StyleSheet.create({
     NavContainer: {
-        position: 'absolute',
         alignItems: 'center',
         width: "100%",
         borderColor: 'rgba(0, 0, 0, 0.05)'

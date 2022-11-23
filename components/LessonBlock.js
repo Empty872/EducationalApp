@@ -1,10 +1,10 @@
 import {useNavigation} from "@react-navigation/native";
 import {Image, ImageBackground, Pressable, StyleSheet, Text, View} from "react-native";
 
-export default function LessonBlock(backgroundImageUrl, name, description, imageUrl) {
+export default function LessonBlock(backgroundImageUrl, name, description, imageUrl, topicsCount, topicsList) {
     const navigation = useNavigation()
     return (
-        <Pressable style={{width: 309}} onPress={() => navigation.navigate('Lesson')}>
+        <Pressable style={{width: 309}} onPress={() => navigation.navigate('Lesson', {topicsCount: topicsCount, topicsList: topicsList})}>
             <ImageBackground style={{
                 marginTop: 16,
                 left: 26,

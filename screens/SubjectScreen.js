@@ -5,7 +5,7 @@ export default function SubjectScreen({route}) {
     const {name, lessonsList} = route.params
     return (<View style={styles.container}>
         <TopPanel/>
-        <View style={styles.screen}>
+        <View>
             <Text style={styles.header}>{name}</Text>
             {lessonsList}
         </View>
@@ -15,9 +15,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#fff'
-    },
-    screen: {
-        top: 50,
     },
     header: {
         fontStyle: "normal",

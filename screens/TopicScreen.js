@@ -1,17 +1,17 @@
-import {Image, ScrollView, StyleSheet, Text, View} from "react-native";
+import {ScrollView, StyleSheet, Text, View} from "react-native";
 import {TopPanel} from "../components/Panels";
-import ScaledImage from "../components/ScaledImage";
 
-export default function TopicScreen() {
+export default function TopicScreen({route}) {
+    const {number, content} = route.params
     return (<View style={styles.container}>
         <TopPanel/>
-        <View style={styles.screen}>
+        <View>
             <View style={{height: "9.62%"}}>
                 <Text style={{
                     marginTop: '4%', left: "8.3%", fontWeight: '700',
                     fontSize: 20,
                     lineHeight: 27
-                }}>Тема 3</Text>
+                }}>Тема {number}</Text>
             </View>
             <View style={{height: "84.245%", width: "87.5%", left: "6.25%"}}>
                 <View style={{
@@ -36,32 +36,7 @@ export default function TopicScreen() {
                     paddingTop: 24
 
                 }}>
-                    <Text style={styles.text}>Что-то интересное что-то интересное что-то интересное что-то
-                        интересное
-                        что-то интересное что-то
-                        интересное что-то интересное что-то интересное что-то интересное что-то интересное </Text>
-                    <Text style={styles.text}>Что-то интересное что-то интересное что-то интересное что-то интересное
-                        что-то интересное
-                        что-то
-                        интересное </Text>
-                    <Text style={styles.text}>Что-то интересное что-то интересное что-то интересное что-то интересное
-                        что-то интересное что-то интересное что-то интересное что-то интересное что-то интересное что-то
-                        интересное что-то
-                        интересное что-то интересное что-то интересное что-то интересное </Text>
-                    <Text style={styles.text}>Что-то интересное что-то интересное что-то интересное что-то
-                        интересное
-                        что-то интересное что-то
-                        интересное что-то интересное что-то интересное что-то интересное что-то интересное </Text>
-                    <Text style={styles.text}>Котик Котик Котик Котик Котик Котик Котик Котик Котик Котик Котик Котик Котик Котик Котик Котик Котик Котик Котик Котик Котик Котик Котик Котик
-                        Котик Котик Котик Котик Котик Котик</Text>
-                    <Image style={{width: 300}} source={require('../images/котик.png')}/>
-                    <ScaledImage uri={'../images/котик.png'}/>
-                    <Text style={styles.text}>Котик Котик Котик Котик Котик Котик Котик Котик Котик Котик Котик Котик Котик Котик Котик Котик Котик Котик Котик Котик Котик Котик Котик Котик
-                        Котик Котик Котик Котик Котик Котик</Text>
-                    <Text style={styles.text}>Что-то интересное что-то интересное что-то интересное что-то интересное
-                        что-то интересное что-то интересное что-то интересное что-то интересное что-то интересное что-то
-                        интересное что-то
-                        интересное что-то интересное что-то интересное что-то интересное </Text>
+                    {content}
                 </ScrollView>
             </View>
         </View>
@@ -70,9 +45,6 @@ export default function TopicScreen() {
 const styles = StyleSheet.create({
     container: {
         flex: 1, backgroundColor: '#fff'
-    },
-    screen: {
-        top: 50
     },
     text: {
         marginBottom: 31, fontWeight: "600", fontSize: 14,
