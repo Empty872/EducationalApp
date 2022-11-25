@@ -1,33 +1,31 @@
-import {useNavigation} from "@react-navigation/native";
-import {Image, ImageBackground, Pressable, StyleSheet, Text, View} from "react-native";
+import {Image, ImageBackground, StyleSheet, Text, View} from "react-native";
 
-export default function LessonBlock(backgroundImageUrl, name, description, imageUrl, topicsCount, topicsList) {
-    const navigation = useNavigation()
+export default function LessonBlock(backgroundImageUrl, lessonNumberText, lessonName, imageUrl) {
     return (
-        <Pressable style={{width: 309}} onPress={() => navigation.navigate('Lesson', {topicsCount: topicsCount, topicsList: topicsList})}>
-            <ImageBackground style={{
-                marginTop: 16,
-                left: 26,
-                width: 309,
-                minHeight: 93,
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-            }} source={backgroundImageUrl}>
-                <View style={{left: 18, maxWidth: "70%"}}>
-                    <Text style={styles.lessonBlockName}>{name}</Text>
-                    <Text style={styles.blockDescription}>{description}</Text>
-                </View>
-                <Image source={imageUrl} style={{marginTop: 29, marginRight: 34}}/>
-            </ImageBackground></Pressable>)
+        <ImageBackground style={{
+            marginBottom: 16,
+            left: 26,
+            width: 309,
+            minHeight: 93,
+            flexDirection: 'row',
+            justifyContent: 'space-between',
+        }} source={backgroundImageUrl}>
+            <View style={{left: 18, maxWidth: "70%"}}>
+                <Text style={styles.blockName}>{lessonNumberText}</Text>
+                <Text style={styles.blockDescription}>{lessonName}</Text>
+            </View>
+            <Image source={imageUrl} style={{marginTop: 29, marginRight: 34}}/>
+        </ImageBackground>
+    )
 }
 const styles = StyleSheet.create({
-    lessonBlockName: {
+    blockName: {
         color: "#fff",
         top: 9,
         fontWeight: "600",
         fontSize: 20,
         lineHeight: 27,
-        marginBottom: 4
+        marginBottom: 10
     },
     blockDescription: {
         color: "#fff",

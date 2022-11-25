@@ -1,10 +1,8 @@
-import {useNavigation} from "@react-navigation/native";
-import {Image, Pressable, Text} from "react-native";
+import {Image, Text, View} from "react-native";
 
-export function LeftTopicBlock(number, content) {
-    const navigation = useNavigation()
+export function LeftTopicBlock(number) {
     return (
-        <Pressable onPress={() => navigation.navigate('Topic', {number: number, content: content})} style={{
+        <View style={{
             marginBottom: -20, display: "flex",
             flexDirection: "column",
             alignItems: "center",
@@ -13,32 +11,29 @@ export function LeftTopicBlock(number, content) {
         }}>
             <Image style={{marginBottom: 4}} source={require('../images/blueCircle.png')}/>
             <Text>Тема {number}</Text>
-
-        </Pressable>
+        </View>
     )
 }
 
-export function RightTopicBlock(number, content) {
-    const navigation = useNavigation()
+export function RightTopicBlock(number) {
     return (
-        <Pressable onPress={() => navigation.navigate('Topic', {number: number, content: content})} style={{
+        <View style={{
             marginBottom: -20, display: "flex",
             flexDirection: "column",
             alignItems: "center",
             marginRight: 40,
-            marginLeft: "auto"
-        }}>
+            marginLeft: "auto"}}>
             <Image style={{marginBottom: 4}} source={require('../images/blueCircle.png')}/>
             <Text>Тема {number}</Text>
-        </Pressable>
+        </View>
     )
 }
 
-export default function TopicBlock(number, content) {
+export default function TopicBlock(number) {
     if (number % 2 === 1) {
-        return LeftTopicBlock(number, content)
+        return LeftTopicBlock(number, '')
     } else {
-        return RightTopicBlock(number, content)
+        return RightTopicBlock(number, '')
     }
 }
 

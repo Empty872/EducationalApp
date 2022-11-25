@@ -1,13 +1,10 @@
-import {useNavigation} from "@react-navigation/native";
-import {ImageBackground, Pressable, StyleSheet, Text} from "react-native";
+import {ImageBackground, StyleSheet, Text} from "react-native";
 
-export default function SubjectBlock(imageUrl, name, lessonsList) {
-    const navigation = useNavigation()
-    return (<Pressable style={{marginBottom: 13, left: 17, width: 309, height: 93}}
-                       onPress={() => navigation.navigate('Subject', {name: name, lessonsList: lessonsList})}>
-        <ImageBackground style={{height: "100%"}} source={imageUrl}>
+export default function SubjectBlock(imageUrl, name) {
+    return (
+        <ImageBackground style={{marginBottom: 13, left: 17, width: 309, height: 93}} source={imageUrl}>
             <Text style={styles.subjectBlockName}>{name}</Text></ImageBackground>
-    </Pressable>)
+    )
 }
 
 const styles = StyleSheet.create({
