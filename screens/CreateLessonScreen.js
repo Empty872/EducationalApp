@@ -1,20 +1,15 @@
 import {Pressable, StyleSheet, Text, TextInput, View} from "react-native";
 import React, {useState} from "react";
 import {useNavigation} from "@react-navigation/native";
-import {useDispatch, useSelector} from "react-redux";
-import {setSubjectsList} from "../redux/actions";
-import LessonBlock from "../components/LessonBlock";
+import LessonClass from "../components/LessonClass";
 
 export default function CreateLessonScreen({route}) {
-    const {subjectNumber} = route.params
+    const {subjectClass} = route.params
     const [name, setName] = useState('')
     const navigation = useNavigation()
-    const {subjectsList} = useSelector(state => state.userReducer);
-    const lessonNumber = subjectsList[subjectNumber][2].length + 1
-    const dispatch = useDispatch()
-    const addLessonHandler = (list) => {
-        list[subjectNumber][2].push([LessonBlock(require('../images/blueRectangle.png'), "Урок " + lessonNumber, name, require('../images/subjectImages/separate.png')), []]);
-        return list
+    const lessonNumber = subjectClass.lessonsList.length + 1
+    const addLessonHandler = (subject) => {
+        subject.addLesson(new LessonClass(require('../images/blueRectangle.png'), "Урок " + lessonNumber, name, require('../images/subjectImages/separate.png'), []));
     }
     return (<View style={styles.container}>
         <View>
@@ -22,10 +17,10 @@ export default function CreateLessonScreen({route}) {
             <TextInput onChangeText={(text) => setName(text)} style={styles.input} placeholder='Название урока'/>
         </View>
         <Pressable onPress={() => {
-            navigation.goBack();
-            dispatch(setSubjectsList(addLessonHandler(subjectsList)))
+            addLessonHandler(subjectClass)
+            navigation.navigate('Subject', {subjectClass: subjectClass});
         }} style={[styles.button, {backgroundColor: '#00CFEB90'}]}>
-            <Text style={{fontSize: 17, fontWeight: '400', color: 'white'}}>Создать урок</Text>
+            <Text style={{fontSize: 17, fontWeight: '400', color: 'white'}}>Добавить урок</Text>
         </Pressable>
     </View>)
 }

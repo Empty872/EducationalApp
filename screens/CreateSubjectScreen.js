@@ -1,9 +1,9 @@
 import {Pressable, StyleSheet, Text, TextInput, View} from "react-native";
 import React, {useState} from "react";
-import SubjectBlock from "../components/SubjectBlock";
 import {useNavigation} from "@react-navigation/native";
 import {useDispatch, useSelector} from "react-redux";
 import {setSubjectsList} from "../redux/actions";
+import SubjectClass from "../components/SubjectClass";
 
 export default function CreateSubjectScreen() {
     const [name, setName] = useState('')
@@ -15,7 +15,7 @@ export default function CreateSubjectScreen() {
                 <Text style={{fontSize: 17, fontWeight: '400', color: 'white'}}>Введите название предмета</Text>
                 <TextInput onChangeText={(text) => setName(text)} style={styles.input} placeholder='Название предмета'/>
             </View>
-            <Pressable onPress={()=>{navigation.goBack(); dispatch(setSubjectsList([...subjectsList, [SubjectBlock(require('../images/math.png'), name), name, [[]]]]))}} style={[styles.button, {backgroundColor: '#00CFEB90'}]}>
+            <Pressable onPress={()=>{navigation.goBack(); dispatch(setSubjectsList([...subjectsList, new SubjectClass(require('../images/math.png'), name, [])]))}} style={[styles.button, {backgroundColor: '#00CFEB90'}]}>
                 <Text style={{fontSize: 17, fontWeight: '400', color: 'white'}}>Создать предмет</Text>
             </Pressable>
         </View>)

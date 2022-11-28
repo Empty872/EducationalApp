@@ -1,22 +1,20 @@
 import {Pressable, ScrollView, StyleSheet, Text, TextInput, View} from "react-native";
 import {TopPanel} from "../components/Panels";
-import {useDispatch, useSelector} from "react-redux";
 import React, {useState} from "react";
-import {setSubjectsList} from "../redux/actions";
+import {useNavigation} from "@react-navigation/native";
 
 export default function TopicScreen({route}) {
-    const {subjectsList} = useSelector(state => state.userReducer);
-    const {subjectNumber, lessonNumber, topicNumber} = route.params
-    const content = subjectsList[subjectNumber][2][lessonNumber][1][topicNumber][1]
-    const neededContent =[]
-    for (let i=0; i<content.length; ++i)
-    {neededContent.push(content[i])}
-    const [newContent, setNewContent] = useState('')
-    const addContentHandler=(list)=>{
-        list[subjectNumber][2][lessonNumber][1][topicNumber][1].push(<Text>{newContent}</Text>)
-        return list
+    const {topicClass} = route.params
+    const navigation = useNavigation()
+    const content = topicClass.content
+    const neededContent = []
+    for (let i = 0; i < content.length; ++i) {
+        neededContent.push(content[i])
     }
-    const dispatch = useDispatch()
+    const [newContent, setNewContent] = useState('')
+    const addContentHandler = (topic) => {
+        topic.addContent(<Text>{newContent}</Text>)
+    }
     return (<View style={styles.container}>
         <TopPanel/>
         <View>
@@ -25,7 +23,7 @@ export default function TopicScreen({route}) {
                     marginTop: '4%', left: "8.3%", fontWeight: '700',
                     fontSize: 20,
                     lineHeight: 27
-                }}>Тема {topicNumber+1}</Text>
+                }}>Тема {topicClass.number}</Text>
             </View>
             <View style={{height: "84.245%", width: "87.5%", left: "6.25%"}}>
                 <View style={{
@@ -51,13 +49,18 @@ export default function TopicScreen({route}) {
 
                 }}>
                     {neededContent}
-                    <View style ={{backgroundColor: '#dab'}}>
+                    <View style={{backgroundColor: '#dab'}}>
                         <Text style={{fontSize: 17, fontWeight: '400', color: 'white'}}>Введите текст</Text>
-                        <TextInput onChangeText={(text) => setNewContent(text)} style={styles.input} placeholder='текст'/>
+                        <TextInput onChangeText={(text) => setNewContent(text)} style={styles.input}
+                                   placeholder='текст'/>
                     </View>
-                    <Pressable onPress={()=>dispatch(setSubjectsList(addContentHandler(subjectsList)))}
+                    <Pressable onPress={() => {
+                        addContentHandler(topicClass);
+                        navigation.navigate('Topic', {topicClass: topicClass})
+                    }}
                                style={[styles.button, {backgroundColor: '#00CFEB90'}]}>
-                        <Text style={{fontSize: 17, fontWeight: '400', color: 'white'}}>Создать урок</Text></Pressable>
+                        <Text style={{fontSize: 17, fontWeight: '400', color: 'white'}}>Добавить
+                            текст</Text></Pressable>
                 </ScrollView>
             </View>
         </View>

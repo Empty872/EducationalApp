@@ -32,8 +32,8 @@ export default function HomeScreen() {
     const {subjectsList} = useSelector(state => state.userReducer);
     let newSubjectsList = []
     for (let i =0; i<subjectsList.length; ++i) {
-        const subjectBlock = subjectsList[i];
-        newSubjectsList.push(<Pressable onPress={()=>navigation.navigate('Subject', {subjectNumber: i})}>{subjectBlock[0]}</Pressable>)}
+        const subjectClass = subjectsList[i];
+        newSubjectsList.push(<Pressable onPress={()=>navigation.navigate('Subject', {subjectClass: subjectClass})}>{subjectClass.block}</Pressable>)}
     const window = useWindowDimensions()
 
     return (<View style={styles.container}>
