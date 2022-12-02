@@ -1,6 +1,8 @@
 import {Image, ImageBackground, StyleSheet, Text, View} from "react-native";
 
-export default function LessonBlock(backgroundImageUrl, lessonNumberText, lessonName, imageUrl) {
+export default function LessonBlock(lessonNumberText, lessonName, imageUrl, isCompleted) {
+    const backgroundImage = isCompleted ? require('../images/greenRectangle.png') : require('../images/blueRectangle.png')
+    const textColor = isCompleted ? "#000" : "#fff"
     return (
         <ImageBackground style={{
             marginBottom: 16,
@@ -9,10 +11,10 @@ export default function LessonBlock(backgroundImageUrl, lessonNumberText, lesson
             minHeight: 93,
             flexDirection: 'row',
             justifyContent: 'space-between',
-        }} source={backgroundImageUrl}>
+        }} source={backgroundImage}>
             <View style={{left: 18, maxWidth: "70%"}}>
-                <Text style={styles.blockName}>{lessonNumberText}</Text>
-                <Text style={styles.blockDescription}>{lessonName}</Text>
+                <Text style={[styles.blockName, {color: textColor}]}>{lessonNumberText}</Text>
+                <Text style={[styles.blockDescription, {color: textColor}]}>{lessonName}</Text>
             </View>
             <Image source={imageUrl} style={{marginTop: 29, marginRight: 34}}/>
         </ImageBackground>
@@ -20,7 +22,6 @@ export default function LessonBlock(backgroundImageUrl, lessonNumberText, lesson
 }
 const styles = StyleSheet.create({
     blockName: {
-        color: "#fff",
         top: 9,
         fontWeight: "600",
         fontSize: 20,
@@ -28,7 +29,6 @@ const styles = StyleSheet.create({
         marginBottom: 10
     },
     blockDescription: {
-        color: "#fff",
         fontWeight: "400",
         fontSize: 18,
         lineHeight: 25,

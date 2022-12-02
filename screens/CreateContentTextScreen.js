@@ -1,26 +1,24 @@
 import {Pressable, StyleSheet, Text, TextInput, View} from "react-native";
 import React, {useState} from "react";
 import {useNavigation} from "@react-navigation/native";
-import LessonClass from "../components/LessonClass";
 
-export default function CreateLessonScreen({route}) {
-    const {subjectClass} = route.params
-    const [name, setName] = useState('')
+export default function CreateContentTextScreen({route}) {
+    const {topicClass} = route.params
+    const [text, setText] = useState('')
     const navigation = useNavigation()
-    const lessonNumber = subjectClass.lessonsList.length + 1
-    const addLessonHandler = (subject) => {
-        subject.addLesson(new LessonClass("Урок " + lessonNumber, name, require('../images/subjectImages/separate.png'), []));
+    const addTextHandler = () => {
+        topicClass.addContent(<Text>{text}</Text>);
     }
     return (<View style={styles.container}>
         <View>
-            <Text style={{fontSize: 17, fontWeight: '400', color: 'white'}}>Введите название урока</Text>
-            <TextInput onChangeText={(text) => setName(text)} style={styles.input} placeholder='Название урока'/>
+            <Text style={{fontSize: 17, fontWeight: '400', color: 'white'}}>Введите информацию</Text>
+            <TextInput multiline={true} onChangeText={(text) => setText(text)} placeholder='Информация'/>
         </View>
         <Pressable onPress={() => {
-            addLessonHandler(subjectClass)
-            navigation.navigate('Subject', {subjectClass: subjectClass});
+            addTextHandler()
+            navigation.navigate('Topic', {topicClass: topicClass});
         }} style={[styles.button, {backgroundColor: '#00CFEB90'}]}>
-            <Text style={{fontSize: 17, fontWeight: '400', color: 'white'}}>Добавить урок</Text>
+            <Text style={{fontSize: 17, fontWeight: '400', color: 'white'}}>Добавить информацию</Text>
         </Pressable>
     </View>)
 }

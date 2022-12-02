@@ -2,8 +2,8 @@ import LessonBlock from "./LessonBlock";
 import {Text} from "react-native";
 
 export default class LessonClass{
-    constructor(backgroundImageUrl, number, name, imageUrl, topicsList) {
-        this.block = new LessonBlock(backgroundImageUrl, number, name, imageUrl)
+    constructor(number, name, imageUrl, topicsList) {
+        this.block = new LessonBlock(number, name, imageUrl, false)
         this.name = <Text>{name}</Text>
         this.topicsList = topicsList
     }

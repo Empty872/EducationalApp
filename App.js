@@ -14,6 +14,8 @@ import LessonScreen from "./screens/LessonScreen";
 import TopicScreen from "./screens/TopicScreen";
 import CreateSubjectScreen from "./screens/CreateSubjectScreen";
 import CreateLessonScreen from "./screens/CreateLessonScreen";
+import CreateContentQuestionScreen from "./screens/CreateContentQuestionScreen";
+import CreateContentTextScreen from "./screens/CreateContentTextScreen";
 import {Provider} from "react-redux";
 import {Store} from "./redux/store"
 
@@ -51,6 +53,10 @@ export default function App() {
                 <Stack.Screen name='CreateSubject' component={CreateSubjectScreen}
                               options={{headerShown: false, statusBarStyle: "dark"}}/>
                 <Stack.Screen name='CreateLesson' component={CreateLessonScreen}
+                              options={{headerShown: false, statusBarStyle: "dark"}}/>
+                <Stack.Screen name='CreateContentQuestion' component={CreateContentQuestionScreen}
+                              options={{headerShown: false, statusBarStyle: "dark"}}/>
+                <Stack.Screen name='CreateContentText' component={CreateContentTextScreen}
                               options={{headerShown: false, statusBarStyle: "dark"}}/>
             </Stack.Navigator>
         </NavigationContainer>

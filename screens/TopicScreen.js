@@ -1,19 +1,37 @@
-import {Pressable, ScrollView, StyleSheet, Text, TextInput, View} from "react-native";
+import {Image, Pressable, ScrollView, StyleSheet, Text, View} from "react-native";
 import {TopPanel} from "../components/Panels";
-import React, {useState} from "react";
+import {launchImageLibrary} from 'react-native-image-picker';
 import {useNavigation} from "@react-navigation/native";
 
 export default function TopicScreen({route}) {
     const {topicClass} = route.params
     const navigation = useNavigation()
     const content = topicClass.content
+    const openGallery = () => {
+        let options = {
+            storageOption: {
+                path: 'images',
+                mediaType: 'photo'
+            },
+            includeBase64: true
+        };
+        launchImageLibrary(options, response => {
+            console.log('Response ', response);
+            if (response.didCancel) {
+                console.log('User cancelled image picker');
+            } else if (response.error) {
+                console.log('ImagePicker Error: ', response.error);
+            } else if (response.customButton) {
+                console.log('User tapped custom button: ', response.customButton);
+            } else {
+                const source = {uri: 'data:image/jpeg;base64,' + response.assets[0].base64};
+                topicClass.addContent(<Image source={source} style={{width: 200, height: 200}}/>)
+            }
+        });
+    }
     const neededContent = []
     for (let i = 0; i < content.length; ++i) {
         neededContent.push(content[i])
-    }
-    const [newContent, setNewContent] = useState('')
-    const addContentHandler = (topic) => {
-        topic.addContent(<Text>{newContent}</Text>)
     }
     return (<View style={styles.container}>
         <TopPanel/>
@@ -49,18 +67,14 @@ export default function TopicScreen({route}) {
 
                 }}>
                     {neededContent}
-                    <View style={{backgroundColor: '#dab'}}>
-                        <Text style={{fontSize: 17, fontWeight: '400', color: 'white'}}>Введите текст</Text>
-                        <TextInput onChangeText={(text) => setNewContent(text)} style={styles.input}
-                                   placeholder='текст'/>
-                    </View>
+                    <Pressable onPress={() => navigation.navigate('CreateContentQuestion', {topicClass: topicClass})}
+                               style={{backgroundColor: "#dab", width: 309, height: 30, left: 17}}/>
+                    <Pressable onPress={() => navigation.navigate('CreateContentText', {topicClass: topicClass})}
+                               style={{backgroundColor: "#5cf", width: 309, height: 30, left: 17}}/>
                     <Pressable onPress={() => {
-                        addContentHandler(topicClass);
-                        navigation.navigate('Topic', {topicClass: topicClass})
+                        openGallery()
                     }}
-                               style={[styles.button, {backgroundColor: '#00CFEB90'}]}>
-                        <Text style={{fontSize: 17, fontWeight: '400', color: 'white'}}>Добавить
-                            текст</Text></Pressable>
+                               style={{backgroundColor: "#f50", width: 309, height: 30, left: 17}}/>
                 </ScrollView>
             </View>
         </View>

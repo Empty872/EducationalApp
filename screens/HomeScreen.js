@@ -33,7 +33,7 @@ export default function HomeScreen() {
     let newSubjectsList = []
     for (let i =0; i<subjectsList.length; ++i) {
         const subjectClass = subjectsList[i];
-        newSubjectsList.push(<Pressable onPress={()=>navigation.navigate('Subject', {subjectClass: subjectClass})}>{subjectClass.block}</Pressable>)}
+        newSubjectsList.push(<Pressable style={{width: 309}} onPress={()=>navigation.navigate('Subject', {subjectClass: subjectClass})}>{subjectClass.block}</Pressable>)}
     const window = useWindowDimensions()
 
     return (<View style={styles.container}>
