@@ -1,10 +1,10 @@
 {
   "expo": {
-    "name": "FirstApp",
+    "name": "EducationalApp",
     "slug": "FirstApp",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/icon_test.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
@@ -23,7 +23,7 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/adaptive-icon_test.png",
         "backgroundColor": "#FFFFFF"
       },
       "package": "com.empty38.FirstApp"

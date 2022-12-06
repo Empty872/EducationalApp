@@ -1,6 +1,6 @@
 import {Image, Pressable, ScrollView, StyleSheet, Text, useWindowDimensions, View} from "react-native";
 import {TopPanel} from "../components/Panels";
-import {DashedLine} from "../components/TopicBlock"
+import {DashedLine} from "../components/TopicClass"
 import {useNavigation} from "@react-navigation/native";
 import TopicClass from "../components/TopicClass";
 
