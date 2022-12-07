@@ -1,42 +1,34 @@
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
-import { useNavigation } from "@react-navigation/native";
 import React from "react";
-import { initializeApp } from "firebase/app";
-import { firebaseConfig } from "../firebase-config";
-import { getAuth, signInAnonymously } from "firebase/auth";
-import App from "../App";
 
-export default function ChoosingMethodScreen() {
-    const navigation = useNavigation()
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-    const handleSignIn = () => {
-        signInAnonymously(auth)
-            .then((userCredential) => {
-                console.log('Signed in!')
-                App.user = userCredential.user
-                console.log(App.user.email)
-                navigation.navigate('Home');
-            })
-            .catch(error => {
-                console.log(error)
-            })
-    }
+export default function LoginStudentsScreen() {
     return (
         <View style={styles.container}>
-            <Text style={[styles.title]}>Вход для учеников</Text>
-            <Text style={[styles.descr]}>Логин</Text>
+            <Text style={styles.title}>
+                Вход для учеников
+            </Text>
+            <Text style={styles.descr}>
+                Логин
+            </Text>
             <TextInput style={[styles.input, { marginBottom: 18 }]} />
-            <Text style={[styles.descr]}>Пароль</Text>
+            <Text style={styles.descr}>
+                Пароль
+            </Text>
             <TextInput style={[styles.input, { marginBottom: 31 }]} />
-            <TouchableOpacity style={[styles.button]} >
-                <Text style={{ fontSize: 22, fontWeight: '700', color: 'white' }}> Далее </Text>
+            <TouchableOpacity style={styles.button} >
+                <Text style={{ fontSize: 22, fontWeight: '700', color: 'white' }}>
+                    Далее
+                </Text>
             </TouchableOpacity>
             <TouchableOpacity style={{ marginBottom: 40 }}>
-                <Text style={{ fontSize: 15, fontWeight: '700', color: 'black' }}> Войти как учитель </Text>
+                <Text style={{ fontSize: 15, fontWeight: '700', color: 'black' }}>
+                    Войти как учитель
+                </Text>
             </TouchableOpacity>
             <TouchableOpacity>
-                <Text style={{ fontSize: 15, fontWeight: '700', color: '#8000FF' }}> Помогите мне! </Text>
+                <Text style={{ fontSize: 15, fontWeight: '700', color: '#8000FF' }}>
+                    Помогите мне!
+                </Text>
             </TouchableOpacity>
         </View >
     )

@@ -1,40 +1,30 @@
-import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
-import { useNavigation } from "@react-navigation/native";
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
-import { initializeApp } from "firebase/app";
-import { firebaseConfig } from "../firebase-config";
-import { getAuth, signInAnonymously } from "firebase/auth";
-import App from "../App";
 
-export default function ChoosingMethodScreen() {
-    const navigation = useNavigation()
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-    const handleSignIn = () => {
-        signInAnonymously(auth)
-            .then((userCredential) => {
-                console.log('Signed in!')
-                App.user = userCredential.user
-                console.log(App.user.email)
-                navigation.navigate('Home');
-            })
-            .catch(error => {
-                console.log(error)
-            })
-    }
+export default function LoginScreen() {
     return (
         <View style={styles.container}>
-            <Image style={{ marginBottom: 55, width: 111, height: 141 }} source={require('../images/logo.png')}></Image>
-            <Text style={[styles.title]}>Кто ты?</Text>
-            <TouchableOpacity onPress={() => { navigation.navigate('LoginByEmail') }} style={[styles.button]} >
-                <Text style={{ fontSize: 22, fontWeight: '700', color: 'white' }}> Я ученик </Text>
+            <Image
+                style={{ marginBottom: 55, width: 111, height: 141 }}
+                source={require('../images/logo.png')}
+            />
+            <Text style={styles.title}>
+                Кто ты?
+            </Text>
+            <TouchableOpacity style={styles.button}>
+                <Text style={styles.text}>
+                    Я ученик
+                </Text>
             </TouchableOpacity>
-            <TouchableOpacity onPress={() => { handleSignIn() }} style={[styles.button]} >
-                <Text style={{ fontSize: 22, fontWeight: '700', color: 'white' }}> Я учитель </Text>
+            <TouchableOpacity style={styles.button}>
+                <Text style={styles.text}>
+                    Я учитель
+                </Text>
             </TouchableOpacity>
         </View>
     )
 }
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
@@ -62,5 +52,10 @@ const styles = StyleSheet.create({
         marginBottom: 28,
         alignSelf: "start",
         fontWeight: '600',
+    },
+    text: {
+        fontSize: 22,
+        fontWeight: '700',
+        color: 'white'
     }
 })
