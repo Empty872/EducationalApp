@@ -16,7 +16,6 @@ import LoginScreen from "./screens/LoginScreen";
 import LoginStudentScreen from "./screens/LoginStudentScreen";
 import LoginTeacherScreen from "./screens/LoginTeacherScreen";
 import LoginHelpScreen from "./screens/LoginHelpScreen";
-import ErrorElement from "./components/ErrorElement";
 import {Provider} from "react-redux";
 import {Store} from "./redux/store"
 
@@ -59,8 +58,6 @@ export default function App() {
                 <Stack.Screen name='LoginTeacher' component={LoginTeacherScreen}
                               options={{headerShown: false, statusBarStyle: "dark"}}/>
                 <Stack.Screen name='LoginHelp' component={LoginHelpScreen}
-                              options={{headerShown: false, statusBarStyle: "dark"}}/>
-                <Stack.Screen name='ErrorElement' component={ErrorElement}
                               options={{headerShown: false, statusBarStyle: "dark"}}/>
             </Stack.Navigator>
         </NavigationContainer>
