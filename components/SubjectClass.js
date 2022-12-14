@@ -1,4 +1,3 @@
-// import SubjectBlock from "./SubjectBlock";
 import {ImageBackground, StyleSheet, Text} from "react-native";
 
 export default class SubjectClass {

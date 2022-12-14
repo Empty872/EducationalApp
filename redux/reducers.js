@@ -1,10 +1,11 @@
-import {SET_SUBJECTS_LIST} from './actions'
+import {SET_SUBJECTS_LIST, SET_ROLE} from './actions'
 import {Image, Text} from "react-native";
 import SubjectClass from "../components/SubjectClass";
 import LessonClass from "../components/LessonClass";
 import TopicClass from "../components/TopicClass";
+import ScaledImage from 'react-native-scaled-image';
 
-const initialState = {
+export const initialState = {
     subjectsList: [new SubjectClass(require('../images/math.png'), "Математика",
         [new LessonClass("Урок 1", "Что такое дроби?", require('../images/subjectImages/questions.png'),
             [new TopicClass(1, [<Text>Обычный текст</Text>])]),
@@ -40,15 +41,19 @@ const initialState = {
                     style={{width: 360, height: 200}} source={require('../images/blueCircle.png')}/>]),
                     new TopicClass(3, [<Image source={require('../images/castle.png')}/>,
                         <Text>Последний текст</Text>])]),
-            new LessonClass("Урок 3", "Сложение и вычитание дробей", require('../images/subjectImages/sum.png'), []),
+            new LessonClass("Урок 3", "Сложение и вычитание дробей", require('../images/subjectImages/sum.png'), [new TopicClass(1, [
+                <ScaledImage source={require('../images/castle.png')} width={250}/>])]),
             new LessonClass("Урок 4", "Умножение и деление дробей", require('../images/subjectImages/separate.png'), [])]),
-        new SubjectClass(require('../images/biology.png'), "Биология", [])]
+        new SubjectClass(require('../images/biology.png'), "Биология", [])],
+    role: "default"
 }
 
 function userReducer(state = initialState, action) {
     switch (action.type) {
         case SET_SUBJECTS_LIST:
             return {...state, subjectsList: action.payload}
+        case SET_ROLE:
+            return {...state, role: action.payload}
         default:
             return state
     }

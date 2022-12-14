@@ -12,8 +12,14 @@ import CreateSubjectScreen from "./screens/CreateSubjectScreen";
 import CreateLessonScreen from "./screens/CreateLessonScreen";
 import CreateContentQuestionScreen from "./screens/CreateContentQuestionScreen";
 import CreateContentTextScreen from "./screens/CreateContentTextScreen";
+import LoginScreen from "./screens/LoginScreen";
+import LoginStudentScreen from "./screens/LoginStudentScreen";
+import LoginTeacherScreen from "./screens/LoginTeacherScreen";
+import LoginHelpScreen from "./screens/LoginHelpScreen";
+import ErrorElement from "./components/ErrorElement";
 import {Provider} from "react-redux";
 import {Store} from "./redux/store"
+
 
 export const Stack = createNativeStackNavigator();
 
@@ -21,7 +27,7 @@ export const Stack = createNativeStackNavigator();
 export default function App() {
     return (<Provider store={Store}>
         <NavigationContainer>
-            <Stack.Navigator initialRouteName="Home">
+            <Stack.Navigator initialRouteName="Login">
                 <Stack.Screen name="Home" component={HomeScreen}
                               options={{headerShown: false, statusBarStyle: "dark"}}/>
                 <Stack.Screen name="Classes" component={ClassesScreen}
@@ -45,6 +51,16 @@ export default function App() {
                 <Stack.Screen name='CreateContentQuestion' component={CreateContentQuestionScreen}
                               options={{headerShown: false, statusBarStyle: "dark"}}/>
                 <Stack.Screen name='CreateContentText' component={CreateContentTextScreen}
+                              options={{headerShown: false, statusBarStyle: "dark"}}/>
+                <Stack.Screen name='Login' component={LoginScreen}
+                              options={{headerShown: false, statusBarStyle: "dark"}}/>
+                <Stack.Screen name='LoginStudent' component={LoginStudentScreen}
+                              options={{headerShown: false, statusBarStyle: "dark"}}/>
+                <Stack.Screen name='LoginTeacher' component={LoginTeacherScreen}
+                              options={{headerShown: false, statusBarStyle: "dark"}}/>
+                <Stack.Screen name='LoginHelp' component={LoginHelpScreen}
+                              options={{headerShown: false, statusBarStyle: "dark"}}/>
+                <Stack.Screen name='ErrorElement' component={ErrorElement}
                               options={{headerShown: false, statusBarStyle: "dark"}}/>
             </Stack.Navigator>
         </NavigationContainer>

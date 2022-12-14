@@ -1,12 +1,32 @@
-import {Image, Pressable, ScrollView, StyleSheet, Text, View} from "react-native";
+import {Pressable, ScrollView, StyleSheet, Text, useWindowDimensions, View} from "react-native";
 import {TopPanel} from "../components/Panels";
 import {launchImageLibrary} from 'react-native-image-picker';
 import {useNavigation} from "@react-navigation/native";
+import {useSelector} from "react-redux";
+import ScaledImage from "react-native-scaled-image";
 
 export default function TopicScreen({route}) {
     const {topicClass} = route.params
     const navigation = useNavigation()
     const content = topicClass.content
+    const {role} = useSelector(state => state.userReducer);
+    const width = useWindowDimensions().width
+    const addContentBlock = () => {
+        if (role === "teacher") {
+            return <View>
+                <Pressable
+                    onPress={() => navigation.navigate('CreateContentQuestion', {topicClass: topicClass})}
+                    style={{backgroundColor: "#dab", width: 309, height: 30, left: 17}}/>
+                <Pressable onPress={() => navigation.navigate('CreateContentText', {topicClass: topicClass})}
+                           style={{backgroundColor: "#5cf", width: 309, height: 30, left: 17}}/>
+                <Pressable onPress={() => {
+                    openGallery()
+                }}
+                           style={{backgroundColor: "#f50", width: 309, height: 30, left: 17}}/></View>
+        } else {
+            return null
+        }
+    }
     const openGallery = () => {
         let options = {
             storageOption: {
@@ -25,7 +45,8 @@ export default function TopicScreen({route}) {
                 console.log('User tapped custom button: ', response.customButton);
             } else {
                 const source = {uri: 'data:image/jpeg;base64,' + response.assets[0].base64};
-                topicClass.addContent(<Image source={source} style={{width: 200, height: 200}}/>)
+                topicClass.addContent(<ScaledImage source={source} width={width*0.875-58}/>);
+                navigation.navigate('Topic', {topicClass: topicClass})
             }
         });
     }
@@ -67,14 +88,7 @@ export default function TopicScreen({route}) {
 
                 }}>
                     {neededContent}
-                    <Pressable onPress={() => navigation.navigate('CreateContentQuestion', {topicClass: topicClass})}
-                               style={{backgroundColor: "#dab", width: 309, height: 30, left: 17}}/>
-                    <Pressable onPress={() => navigation.navigate('CreateContentText', {topicClass: topicClass})}
-                               style={{backgroundColor: "#5cf", width: 309, height: 30, left: 17}}/>
-                    <Pressable onPress={() => {
-                        openGallery()
-                    }}
-                               style={{backgroundColor: "#f50", width: 309, height: 30, left: 17}}/>
+                    {addContentBlock()}
                 </ScrollView>
             </View>
         </View>

@@ -15,9 +15,10 @@ export default function CreateContentQuestionScreen({route}) {
     const addContentHandler = (content) => {
         topicClass.addContent(content);
     }
-    const newAnswers = []
+    const newFullAnswers = []
     for (let i = 0; i < answers.length; i++) {
-        newAnswers.push(answers[i].getBlock())
+        // newAnswers.push(answers[i].getBlock())
+        newFullAnswers.push(answers[i].getFullBlock())
     }
     const navigation = useNavigation()
     return (<View style={styles.container}>
@@ -28,7 +29,7 @@ export default function CreateContentQuestionScreen({route}) {
                        placeholder='вопрос'/>
         </View>
         <Text>Введите ответы</Text>
-        {newAnswers}
+        {newFullAnswers}
         <TextInput onChangeText={(answer) => setAnswer(answer)}
                    style={styles.input}
                    placeholder='новый ответ'/>
@@ -41,7 +42,7 @@ export default function CreateContentQuestionScreen({route}) {
             <Text style={{fontSize: 17, fontWeight: '400', color: 'white'}}>Добавить ответ</Text>
         </Pressable>
         <Pressable onPress={() => {
-            addContentHandler(new TestBlock(question, newAnswers))
+            addContentHandler(new TestBlock(question, answers))
             navigation.navigate('Topic', {topicClass: topicClass});
         }} style={[styles.button, {backgroundColor: '#00CFEB90'}]}>
             <Text style={{fontSize: 17, fontWeight: '400', color: 'white'}}>Добавить вопрос</Text>
@@ -49,9 +50,10 @@ export default function CreateContentQuestionScreen({route}) {
     </View>)
 }
 const TestBlock = (question, answers) => {
-    const newAnswers=[]
-    for (let i=0; i<answers.length; i++)
-        newAnswers.push(answers[i])
+    const newAnswers = []
+    for (let i = 0; i < answers.length; i++) {
+        newAnswers.push(answers[i].getBlock())
+    }
     return <View style={{marginBottom: 33}}>
         <Text style={{
             fontWeight: "600", fontSize: 14, lineHeight: 19, marginBottom: 21,

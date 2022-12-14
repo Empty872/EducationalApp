@@ -1,26 +1,28 @@
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {Image, Pressable, StyleSheet, Text, View} from "react-native";
 import React from "react";
+import {useNavigation} from "@react-navigation/native";
 
 export default function LoginScreen() {
+    const navigation = useNavigation()
     return (
         <View style={styles.container}>
             <Image
-                style={{ marginBottom: 55, width: 111, height: 141 }}
+                style={{marginBottom: 55, width: 111, height: 141, marginTop: "9.0625%"}}
                 source={require('../images/logo.png')}
             />
             <Text style={styles.title}>
                 Кто ты?
             </Text>
-            <TouchableOpacity style={styles.button}>
+            <Pressable onPress={() => navigation.navigate('LoginStudent')} style={styles.button}>
                 <Text style={styles.text}>
                     Я ученик
                 </Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.button}>
+            </Pressable>
+            <Pressable onPress={() => navigation.navigate('LoginTeacher')} style={styles.button}>
                 <Text style={styles.text}>
                     Я учитель
                 </Text>
-            </TouchableOpacity>
+            </Pressable>
         </View>
     )
 }
@@ -29,28 +31,26 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#fff',
-        paddingRight: 60,
-        paddingLeft: 60,
         alignItems: "center",
         justifyContent: 'center',
-        textDecorationColor: "#fff",
     },
     button: {
-        width: 300,
-        height: 70,
-        borderColor: '#fff',
+        width: 299,
+        height: 68,
+        borderColor: "rgba(0, 0, 0, 0.3)",
         borderRadius: 10,
-        marginVertical: 18,
+        borderWidth: 1,
+        marginBottom: 18,
         backgroundColor: '#8000FF',
         paddingLeft: 30,
-        alignItems: "start",
+        alignItems: "flex-start",
         justifyContent: "center",
     },
     title: {
         fontSize: 22,
-        marginLeft: 20,
+        marginLeft: 56,
         marginBottom: 28,
-        alignSelf: "start",
+        alignSelf: "flex-start",
         fontWeight: '600',
     },
     text: {

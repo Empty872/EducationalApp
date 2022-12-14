@@ -29,12 +29,22 @@ const dashedLine = (className) => {
 
 export default function HomeScreen() {
     const navigation = useNavigation()
-    const {subjectsList} = useSelector(state => state.userReducer);
+    const {subjectsList, role} = useSelector(state => state.userReducer);
     let newSubjectsList = []
-    for (let i =0; i<subjectsList.length; ++i) {
+    for (let i = 0; i < subjectsList.length; ++i) {
         const subjectClass = subjectsList[i];
-        newSubjectsList.push(<Pressable style={{width: 309}} onPress={()=>navigation.navigate('Subject', {subjectClass: subjectClass})}>{subjectClass.block}</Pressable>)}
+        newSubjectsList.push(<Pressable style={{width: 309}}
+                                        onPress={() => navigation.navigate('Subject', {subjectClass: subjectClass})}>{subjectClass.block}</Pressable>)
+    }
     const window = useWindowDimensions()
+    const addSubjectBlock = () => {
+        if (role === "teacher") {
+            return <Pressable onPress={() => navigation.navigate('CreateSubject')}
+                              style={{backgroundColor: "#dab", width: 309, height: 93, left: 17}}/>
+        } else {
+            return null
+        }
+    }
 
     return (<View style={styles.container}>
         <TopAndLeftPanel/>
@@ -43,8 +53,7 @@ export default function HomeScreen() {
                 <Text style={styles.header}>Возвращайтесь к учебе!</Text>
                 {dashedLine("6Б класс")}
                 {newSubjectsList}
-                <Pressable onPress={() => navigation.navigate('CreateSubject')}
-                           style={{backgroundColor: "#dab", width: 309, height: 93, left: 17}}/>
+                {addSubjectBlock()}
             </ScrollView>
         </View>
         {BottomPanel("HomeScreen")}

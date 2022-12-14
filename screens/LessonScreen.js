@@ -3,13 +3,22 @@ import {TopPanel} from "../components/Panels";
 import {DashedLine} from "../components/TopicClass"
 import {useNavigation} from "@react-navigation/native";
 import TopicClass from "../components/TopicClass";
+import {useSelector} from "react-redux";
 
 export default function LessonScreen({route}) {
     const {lessonClass} = route.params
     const navigation = useNavigation()
     const newTopicsList = []
-    const addTopicHandler = (lesson) => {
-        lesson.addTopic(new TopicClass(lesson.topicsList.length+1, []))
+    const {role} = useSelector(state => state.userReducer);
+    const addTopicBlock = () => {
+        if (role === "teacher") {
+            return <Pressable onPress={() => {
+                lessonClass.addTopic(new TopicClass(lessonClass.topicsList.length + 1, []));
+                navigation.navigate('Lesson', {lessonClass: lessonClass})
+            }} style={{backgroundColor: "#dab", width: 309, height: 93, marginTop: 30, alignSelf: "center"}}/>
+        } else {
+            return null
+        }
     }
     for (let i = 0; i < lessonClass.topicsList.length; i++) {
         const topic = lessonClass.topicsList[i]
@@ -24,14 +33,7 @@ export default function LessonScreen({route}) {
         <ScrollView>
             <View style={{marginBottom: 32, marginTop: 40, minHeight: window.height - 289}}>
                 {newTopicsList}
-                <Pressable onPress={() => {addTopicHandler(lessonClass); navigation.navigate('Lesson', {lessonClass: lessonClass})}}
-                           style={{
-                               backgroundColor: "#dab",
-                               width: 309,
-                               height: 93,
-                               marginTop: 30,
-                               alignSelf: "center"
-                           }}/>
+                {addTopicBlock()}
             </View>
             <Image style={{alignSelf: "center", marginBottom: 6}} source={require('../images/castle.png')}/>
             <View style={{backgroundColor: "#D9D9D9", marginBottom: 39, height: 23}}>

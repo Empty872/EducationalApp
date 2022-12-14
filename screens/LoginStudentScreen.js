@@ -1,7 +1,12 @@
-import { StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import {Pressable, StyleSheet, Text, TextInput, View} from "react-native";
 import React from "react";
+import {useNavigation} from "@react-navigation/native";
+import {useDispatch} from "react-redux";
+import {setRole} from "../redux/actions";
 
-export default function LoginStudentsScreen() {
+export default function LoginStudentScreen() {
+    const navigation = useNavigation()
+    const dispatch = useDispatch()
     return (
         <View style={styles.container}>
             <Text style={styles.title}>
@@ -10,27 +15,33 @@ export default function LoginStudentsScreen() {
             <Text style={styles.descr}>
                 Логин
             </Text>
-            <TextInput style={[styles.input, { marginBottom: 18 }]} />
+            <TextInput style={[styles.input, {marginBottom: 18}]}/>
             <Text style={styles.descr}>
                 Пароль
             </Text>
-            <TextInput style={[styles.input, { marginBottom: 31 }]} />
-            <TouchableOpacity style={styles.button} >
-                <Text style={{ fontSize: 22, fontWeight: '700', color: 'white' }}>
+            <TextInput style={[styles.input, {marginBottom: 31}]}/>
+            <Pressable onPress={() => {
+                dispatch(setRole("student"));
+                navigation.navigate('Home')
+            }} style={styles.button}>
+                <Text style={{fontSize: 22, fontWeight: '700', color: 'white'}}>
                     Далее
                 </Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={{ marginBottom: 40 }}>
-                <Text style={{ fontSize: 15, fontWeight: '700', color: 'black' }}>
+            </Pressable>
+            <Pressable onPress={() => {
+                navigation.goBack();
+                navigation.navigate('LoginTeacher')
+            }} style={{marginBottom: 40}}>
+                <Text style={{fontSize: 15, fontWeight: '700', color: 'black'}}>
                     Войти как учитель
                 </Text>
-            </TouchableOpacity>
-            <TouchableOpacity>
-                <Text style={{ fontSize: 15, fontWeight: '700', color: '#8000FF' }}>
+            </Pressable>
+            <Pressable onPress={() => navigation.navigate('LoginHelp')}>
+                <Text style={{fontSize: 15, fontWeight: '700', color: '#8000FF'}}>
                     Помогите мне!
                 </Text>
-            </TouchableOpacity>
-        </View >
+            </Pressable>
+        </View>
     )
 }
 const styles = StyleSheet.create({
@@ -53,14 +64,14 @@ const styles = StyleSheet.create({
         fontSize: 18,
         marginBottom: 7,
         left: 10,
-        alignSelf: 'start',
+        alignSelf: 'flex-start',
     },
     button: {
         width: '95%',
         height: 75,
-        borderColor: '#fff',
+        borderColor: 'rgba(0, 0, 0, 0.3)',
         borderRadius: 10,
-        marginVertical: 18,
+        marginBottom: 18,
         backgroundColor: '#8000FF',
         alignItems: "center",
         justifyContent: "center",
@@ -68,10 +79,9 @@ const styles = StyleSheet.create({
     input: {
         width: '95%',
         height: 40,
-        margin: 12,
         borderRadius: 10,
         borderWidth: 1,
-        borderColor: '#333rgba(0, 0, 0, 0.3)',
+        borderColor: 'rgba(0, 0, 0, 0.3)',
         padding: 10,
     },
 })

@@ -1,15 +1,26 @@
 import {Pressable, ScrollView, StyleSheet, Text, View} from "react-native";
 import {TopPanel} from "../components/Panels";
 import {useNavigation} from "@react-navigation/native";
+import {useSelector} from "react-redux";
 
 
 export default function SubjectScreen({route}) {
     const {subjectClass} = route.params
     const navigation = useNavigation()
+    const {role} = useSelector(state => state.userReducer);
+    const addLessonBlock = () => {
+        if (role === "teacher") {
+            return <Pressable onPress={() => navigation.navigate('CreateLesson', {subjectClass: subjectClass})}
+                              style={{backgroundColor: "#dab", width: 309, height: 93, left: 26}}/>
+        } else {
+            return null
+        }
+    }
     const newLessonsList = []
     for (let i = 0; i < subjectClass.lessonsList.length; ++i) {
         const lessonClass = subjectClass.lessonsList[i]
-        newLessonsList.push(<Pressable style={{width: 309}} onPress={() => navigation.navigate('Lesson', {lessonClass: lessonClass
+        newLessonsList.push(<Pressable style={{width: 309}} onPress={() => navigation.navigate('Lesson', {
+            lessonClass: lessonClass
         })}>{lessonClass.block}</Pressable>)
     }
     return (<View style={styles.container}>
@@ -17,8 +28,7 @@ export default function SubjectScreen({route}) {
         <ScrollView>
             <Text style={styles.header}>{subjectClass.name}</Text>
             {newLessonsList}
-            <Pressable onPress={() => navigation.navigate('CreateLesson', {subjectClass: subjectClass})}
-                       style={{backgroundColor: "#dab", width: 309, height: 93, left: 26}}/>
+            {addLessonBlock()}
         </ScrollView>
     </View>)
 }
