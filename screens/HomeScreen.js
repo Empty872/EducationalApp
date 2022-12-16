@@ -34,7 +34,7 @@ export default function HomeScreen() {
     for (let i = 0; i < subjectsList.length; ++i) {
         const subjectClass = subjectsList[i];
         newSubjectsList.push(<Pressable style={{width: 309}}
-                                        onPress={() => navigation.navigate('Subject', {subjectClass: subjectClass})}>{subjectClass.block}</Pressable>)
+                                        onPress={() => {navigation.navigate('Subject', {subjectClass: subjectClass})}}>{subjectClass.block}</Pressable>)
     }
     const window = useWindowDimensions()
     const addSubjectBlock = () => {

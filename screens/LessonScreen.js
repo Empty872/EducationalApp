@@ -25,6 +25,7 @@ export default function LessonScreen({route}) {
         newTopicsList.push(<Pressable onPress={() => {
             if (role === "student") {
                 topic.complete()
+                lessonClass.checkCompletion()
             }
             navigation.navigate('Topic', {topicClass: topic});
 
