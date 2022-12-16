@@ -5,6 +5,7 @@ export default class SubjectClass {
         this.block = new SubjectBlock(imageUrl, name)
         this.name = <Text>{name}</Text>
         this.lessonsList = lessonsList
+        this.isCompleted = false
     }
 
     addLesson(lesson) {

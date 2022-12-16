@@ -6,6 +6,7 @@ export default class LessonClass{
         this.block = new LessonBlock(number, name, imageUrl, false)
         this.name = <Text>{name}</Text>
         this.topicsList = topicsList
+        this.isCompleted = false
     }
     addTopic(topic){
         this.topicsList.push(topic)

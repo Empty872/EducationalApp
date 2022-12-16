@@ -81,6 +81,7 @@ export const TopAndLeftPanel = () => {
             animationOut="slideOutLeft"
             isVisible={modalVisible}
             backdropOpacity={0.4}
+            onBackdropPress={() => setModalVisible(false)}
             onRequestClose={() => {
                 setModalVisible(false);
             }}

@@ -22,7 +22,13 @@ export default function LessonScreen({route}) {
     }
     for (let i = 0; i < lessonClass.topicsList.length; i++) {
         const topic = lessonClass.topicsList[i]
-        newTopicsList.push(<Pressable onPress={() => navigation.navigate('Topic', {topicClass: topic})}
+        newTopicsList.push(<Pressable onPress={() => {
+            if (role === "student") {
+                topic.complete()
+            }
+            navigation.navigate('Topic', {topicClass: topic});
+
+        }}
         >{topic.block}</Pressable>)
         newTopicsList.push(DashedLine(i + 1))
     }
